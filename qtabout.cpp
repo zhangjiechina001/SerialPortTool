@@ -28,8 +28,6 @@ void QtAbout::setInfo(const AboutInfo &info, int timeout)
 {
     //设置标题
     ui->QtLabName->setText(info.title);
-    ui->QtLabTitle->setText(QString("关于%1").arg(info.title));
-    this->setWindowTitle(ui->QtLabTitle->text());
 
     //设置html内容
     QStringList list;

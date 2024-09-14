@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>300</height>
+    <width>710</width>
+    <height>281</height>
    </rect>
   </property>
   <property name="styleSheet">
@@ -31,24 +31,11 @@
    </property>
    <item>
     <widget class="QWidget" name="QtFormMain" native="true">
-     <widget class="QLabel" name="QtLabTitle">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>9</y>
-        <width>401</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>关于</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="QtLabName">
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>50</y>
+        <y>20</y>
         <width>401</width>
         <height>51</height>
        </rect>
@@ -130,7 +117,7 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>110</y>
+        <y>90</y>
         <width>401</width>
         <height>151</height>
        </rect>
