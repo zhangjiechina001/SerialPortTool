@@ -114,7 +114,7 @@ bool SerialPortWrap::sendReply(QByteArray data,QByteArray &rec)
     ela.start();
     while(_recList.count()==0)
     {
-        waitMs(100);
+        waitMs(50);
         if(ela.elapsed()>3000)
         {
             throw QString("%1 time out").arg(_serial->portName());

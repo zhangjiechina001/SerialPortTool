@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     loadConfig();
 
     loadSendConfig();
+
+    ui->gbSend->setEnabled(false);
 }
 
 MainWindow::~MainWindow()
@@ -196,9 +198,18 @@ void MainWindow::on_sendDataBtn_2_clicked()
 
 QString MainWindow::getFormatString(QByteArray arr)
 {
+
     QString formatted = "";
-    for (int i = 0; i < arr.size(); ++i) {
-      formatted += QString(" %1").arg(static_cast<unsigned char>(arr[i]), 2, 16, QLatin1Char('0')).toUpper();
+    if(ui->hexShowCheck->isChecked())
+    {
+        for (int i = 0; i < arr.size(); ++i) {
+          formatted += QString(" %1").arg(static_cast<unsigned char>(arr[i]), 2, 16, QLatin1Char('0')).toUpper();
+        }
+    }
+    else
+    {
+        qDebug()<<__FUNCTION__<<__LINE__<<arr.toHex();
+        formatted=QString::fromUtf8(arr);
     }
     return formatted;
 }
@@ -208,4 +219,14 @@ void MainWindow::on_actionAbout_triggered()
     QtAbout *w=new QtAbout(this);
     w->setAttribute(Qt::WA_DeleteOnClose);
     w->show();
+}
+
+void MainWindow::on_btnMore_clicked()
+{
+
+}
+
+void MainWindow::on_btnClear_clicked()
+{
+    ui->reciveData->clear();
 }

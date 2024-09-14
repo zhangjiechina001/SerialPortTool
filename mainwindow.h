@@ -35,6 +35,10 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_btnMore_clicked();
+
+    void on_btnClear_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *_serialPort=nullptr;

@@ -42,19 +42,19 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
-                <widget class="QCheckBox" name="hexShowCheck_2">
-                 <property name="text">
-                  <string>Hex显示</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="chbRecSub">
                  <property name="text">
                   <string>接收订阅</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnClear">
+                 <property name="text">
+                  <string>清空</string>
                  </property>
                 </widget>
                </item>
@@ -77,6 +77,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="hexShowCheck">
+            <property name="text">
+             <string>Hex格式</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QGroupBox" name="gbSend">
             <property name="title">
              <string>发送区</string>
@@ -84,13 +91,6 @@
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
               <widget class="QLineEdit" name="txtSend"/>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="hexShowCheck">
-               <property name="text">
-                <string>Hex发送</string>
-               </property>
-              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="sendDataBtn">
