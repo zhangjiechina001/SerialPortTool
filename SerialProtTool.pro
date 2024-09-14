@@ -30,17 +30,21 @@ SOURCES += \
         mainwindow.cpp \
     serialportwrap.cpp \
     widgetutils.cpp \
-    configvar.cpp
+    configvar.cpp \
+    qtabout.cpp
 
 HEADERS += \
         mainwindow.h \
     serialportwrap.h \
     logger.h \
     widgetutils.h \
-    configvar.h
+    configvar.h \
+    qtabout.h \
+    singleton.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    qtabout.ui
 
 DISTFILES += \
     myico.rc

@@ -5,6 +5,7 @@
 #include "serialportwrap.h"
 #include "logger.h"
 #include "widgetutils.h"
+#include "qtabout.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -200,4 +201,11 @@ QString MainWindow::getFormatString(QByteArray arr)
       formatted += QString(" %1").arg(static_cast<unsigned char>(arr[i]), 2, 16, QLatin1Char('0')).toUpper();
     }
     return formatted;
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QtAbout *w=new QtAbout(this);
+    w->setAttribute(Qt::WA_DeleteOnClose);
+    w->show();
 }

@@ -33,6 +33,8 @@ private slots:
 
     void on_sendDataBtn_2_clicked();
 
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *_serialPort=nullptr;
