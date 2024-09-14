@@ -29,13 +29,15 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     serialportwrap.cpp \
-    widgetutils.cpp
+    widgetutils.cpp \
+    configvar.cpp
 
 HEADERS += \
         mainwindow.h \
     serialportwrap.h \
     logger.h \
-    widgetutils.h
+    widgetutils.h \
+    configvar.h
 
 FORMS += \
         mainwindow.ui
