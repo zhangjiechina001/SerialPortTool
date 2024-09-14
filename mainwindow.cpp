@@ -39,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cmbFlowControl->addItems(SerialPortWrap::getFlowList());
 
     loadConfig();
+
+    loadSendConfig();
 }
 
 MainWindow::~MainWindow()
@@ -89,6 +91,19 @@ void MainWindow::saveConfig()
     sp.StopBits=ui->cmbStopBit->currentText();
     sp.FlowControl=ui->cmbFlowControl->currentText();
     ConfigVar::instance().setSerialPortParam(sp);
+}
+
+void MainWindow::loadSendConfig()
+{
+    SendParam sp=ConfigVar::instance().getSendParam();
+    ui->txtSend->setText(sp.SendMsg);
+}
+
+void MainWindow::saveSendConfig()
+{
+    SendParam sp;
+    sp.SendMsg=ui->txtSend->text();
+    ConfigVar::instance().setSendParam(sp);
 }
 
 void MainWindow::onLog(QString log)
@@ -156,6 +171,8 @@ void MainWindow::on_sendDataBtn_clicked()
     // 使用HTML格式设置颜色
     QString html = QString("<span style='color:red;'>发送: </span><span>%1</span>").arg(formattedData);
     ui->reciveData->append(html);  // 使用 append 追加内容
+
+    saveSendConfig();
 }
 
 void MainWindow::on_sendDataBtn_2_clicked()
@@ -171,6 +188,8 @@ void MainWindow::on_sendDataBtn_2_clicked()
         QString html = QString("<span style='color:red;'>发送: </span><span>%1</span>"
                                "<span style='color:green;'>  接收: </span><span>%2</span>").arg(formattedData).arg(getFormatString(rec));
         ui->reciveData->append(html);  // 使用 append 追加内容
+
+        saveSendConfig();
     });
 }
 

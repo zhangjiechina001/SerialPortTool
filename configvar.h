@@ -24,6 +24,13 @@ struct SerialPortParam
     QString FlowControl;
 };
 
+struct SendParam
+{
+    SendParam() {}
+
+    QString SendMsg;
+};
+
 class ConfigVar
 {
 private:
@@ -36,6 +43,9 @@ public:
 
     SerialPortParam getSerialPortParam();
     void setSerialPortParam(SerialPortParam param);
+
+    SendParam getSendParam();
+    void setSendParam(SendParam param);
 
 private:
     QSettings* Setting;

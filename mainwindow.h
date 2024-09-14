@@ -42,6 +42,9 @@ private:
     void loadConfig();
     void saveConfig();
 
+    void loadSendConfig();
+    void saveSendConfig();
+
     QString getFormatString(QByteArray arr);
     QStringList getAvailablePortsString();
 };

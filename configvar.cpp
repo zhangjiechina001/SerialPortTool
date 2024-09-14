@@ -46,3 +46,27 @@ void ConfigVar::setSerialPortParam(SerialPortParam param)
     set->endGroup();
     set->sync();
 }
+
+SendParam ConfigVar::getSendParam()
+{
+    QSettings *set=Setting;
+    SendParam param;
+    if(!set->contains(QString("SendParam/SendMsg")))
+    {
+        SendParam setParam;
+        setSendParam(setParam);
+    }
+    set->beginGroup("SendParam");
+    param.SendMsg=set->value("SendMsg").toString();
+    set->endGroup();
+    return param;
+}
+
+void ConfigVar::setSendParam(SendParam param)
+{
+    QSettings *set=Setting;
+    set->beginGroup("SendParam");
+    set->setValue("SendMsg",param.SendMsg);
+    set->endGroup();
+    set->sync();
+}
