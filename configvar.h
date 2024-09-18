@@ -31,6 +31,13 @@ struct SendParam
     QString SendMsg;
 };
 
+struct LanguageParam
+{
+    LanguageParam() {}
+
+    QString CurrentLanguage;
+};
+
 class ConfigVar
 {
 private:
@@ -43,6 +50,9 @@ public:
 
     SerialPortParam getSerialPortParam();
     void setSerialPortParam(SerialPortParam param);
+
+    LanguageParam getLanguageParam();
+    void setLanguageParam(LanguageParam param);
 
     SendParam getSendParam();
     void setSendParam(SendParam param);

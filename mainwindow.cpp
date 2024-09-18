@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QTimer>
+#include <QTranslator>
 #include "serialportwrap.h"
 #include "logger.h"
 #include "widgetutils.h"
@@ -17,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent) :
     qInstallMessageHandler(Logger::CustomMessageHandler);
 
     updateSerialPort();
+
+    _timer=new QTimer(this);
+    connect(_timer,&QTimer::timeout,this,&MainWindow::sendMsg);
 
     _serialPort=new QSerialPort(this);
     _wrap=new SerialPortWrap(this);
@@ -44,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSendConfig();
 
     ui->gbSend->setEnabled(false);
+
+    undateLanguage();
 }
 
 MainWindow::~MainWindow()
@@ -60,6 +67,46 @@ QStringList MainWindow::getAvailablePortsString()
         ret.append(item.portName());
     }
     return ret;
+}
+
+void MainWindow::undateLanguage()
+{
+    LanguageParam p=ConfigVar::instance().getLanguageParam();
+    switchLanguage(p.CurrentLanguage);
+    ui->retranslateUi(this);
+
+    if(p.CurrentLanguage=="zh")
+    {
+        ui->actionChinese->setChecked(true);
+        ui->actionEnglish->setChecked(false);
+    }
+    else
+    {
+        ui->actionChinese->setChecked(false);
+        ui->actionEnglish->setChecked(true);
+    }
+}
+
+void MainWindow::switchLanguage(QString path)
+{
+    QString strQM = QString(":/res/serialPort_%1_CN.qm").arg(path);
+
+    if (QFile(strQM).exists())
+    {
+        QTranslator* translator = new QTranslator;
+        qDebug()<<__FUNCTION__<<__LINE__;
+        if (translator->load(strQM))
+        {
+            qApp->removeTranslator(translator);
+            //            delete m_translator;
+            qApp->installTranslator(translator);
+        }
+        else
+        {
+            delete translator;
+            translator = NULL;
+        }
+    }
 }
 
 void MainWindow::updateSerialPort()
@@ -120,6 +167,10 @@ void MainWindow::onLog(QString log)
 
 void MainWindow::onReceivedData(QByteArray arr)
 {
+    if(ui->chbRecord->isChecked())
+    {
+        qDebug()<<"接收:"<<getFormatString(arr);
+    }
     if(ui->chbRecSub->isChecked())
     {
         QString formattedData = getFormatString(arr);
@@ -165,15 +216,27 @@ void MainWindow::on_closeSerial_clicked()
     }
 }
 
-void MainWindow::on_sendDataBtn_clicked()
+QByteArray MainWindow::sendMsg()
 {
-    QByteArray arr=QByteArray::fromHex(ui->txtSend->text().toUtf8());
+    QByteArray arr=ui->chbHex->isChecked()?QByteArray::fromHex(ui->txtSend->text().toUtf8())
+                                         :ui->txtSend->text().toUtf8();
     _wrap->sendNoReply(arr);
+    if(ui->chbRecord->isChecked())
+    {
+        qDebug()<<"发送:"<<ui->txtSend->text();
+    }
 
     QString formattedData = getFormatString(arr);
     // 使用HTML格式设置颜色
     QString html = QString("<span style='color:red;'>发送: </span><span>%1</span>").arg(formattedData);
     ui->reciveData->append(html);  // 使用 append 追加内容
+
+    return arr;
+}
+
+void MainWindow::on_sendDataBtn_clicked()
+{
+    QByteArray arr = sendMsg();
 
     saveSendConfig();
 }
@@ -198,9 +261,8 @@ void MainWindow::on_sendDataBtn_2_clicked()
 
 QString MainWindow::getFormatString(QByteArray arr)
 {
-
     QString formatted = "";
-    if(ui->hexShowCheck->isChecked())
+    if(ui->chbHex->isChecked())
     {
         for (int i = 0; i < arr.size(); ++i) {
           formatted += QString(" %1").arg(static_cast<unsigned char>(arr[i]), 2, 16, QLatin1Char('0')).toUpper();
@@ -208,7 +270,6 @@ QString MainWindow::getFormatString(QByteArray arr)
     }
     else
     {
-        qDebug()<<__FUNCTION__<<__LINE__<<arr.toHex();
         formatted=QString::fromUtf8(arr);
     }
     return formatted;
@@ -221,12 +282,40 @@ void MainWindow::on_actionAbout_triggered()
     w->show();
 }
 
-void MainWindow::on_btnMore_clicked()
-{
-
-}
-
 void MainWindow::on_btnClear_clicked()
 {
     ui->reciveData->clear();
+}
+
+void MainWindow::on_checkBox_clicked(bool checked)
+{
+    ui->sendDataBtn->setEnabled(!checked);
+    ui->sendDataBtn_2->setEnabled(!checked);
+    if(checked)
+    {
+        _timer->setInterval(ui->spinBox->value());
+        _timer->start();
+    }
+    else
+    {
+        _timer->stop();
+    }
+}
+
+void MainWindow::on_actionChinese_triggered()
+{
+    LanguageParam p;
+    p.CurrentLanguage="zh";
+    ConfigVar::instance().setLanguageParam(p);
+    WidgetUtils::WidgetUtilsNew::ShowWarning(tr("Restart the software to take effect"));
+//    undateLanguage();
+}
+
+void MainWindow::on_actionEnglish_triggered()
+{
+    LanguageParam p;
+    p.CurrentLanguage="en";
+    ConfigVar::instance().setLanguageParam(p);
+    WidgetUtils::WidgetUtilsNew::ShowWarning(tr("Restart the software to take effect"));
+//    undateLanguage();
 }

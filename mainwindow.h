@@ -35,14 +35,21 @@ private slots:
 
     void on_actionAbout_triggered();
 
-    void on_btnMore_clicked();
-
     void on_btnClear_clicked();
+
+    void on_checkBox_clicked(bool checked);
+
+    QByteArray sendMsg();
+
+    void on_actionChinese_triggered();
+
+    void on_actionEnglish_triggered();
 
 private:
     Ui::MainWindow *ui;
     QSerialPort *_serialPort=nullptr;
     SerialPortWrap *_wrap=nullptr;
+    QTimer *_timer=nullptr;
 
     void updateSerialPort();
     void loadConfig();
@@ -53,6 +60,9 @@ private:
 
     QString getFormatString(QByteArray arr);
     QStringList getAvailablePortsString();
+
+    void undateLanguage();
+    void switchLanguage(QString path);
 };
 
 #endif // MAINWINDOW_H

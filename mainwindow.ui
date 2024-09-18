@@ -25,97 +25,161 @@
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>数据</string>
+        <string>Data</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <layout class="QVBoxLayout" name="controlLayout">
-          <item>
-           <widget class="QGroupBox" name="groupBox_2">
-            <property name="title">
-             <string>接收区</string>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>ReceiveArea</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <widget class="QTextBrowser" name="reciveData"/>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
-              <widget class="QTextBrowser" name="reciveData"/>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <widget class="QCheckBox" name="chbRecSub">
-                 <property name="text">
-                  <string>接收订阅</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="btnClear">
-                 <property name="text">
-                  <string>清空</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
+              <widget class="QCheckBox" name="chbRecord">
+               <property name="text">
+                <string>Save</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="chbRecSub">
+               <property name="text">
+                <string>Display Receive</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnClear">
+               <property name="text">
+                <string>Clear</string>
+               </property>
+              </widget>
              </item>
             </layout>
-           </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item>
-           <widget class="QCheckBox" name="hexShowCheck">
+           <widget class="QCheckBox" name="chbHex">
             <property name="text">
-             <string>Hex格式</string>
+             <string>Hex</string>
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QGroupBox" name="gbSend">
-            <property name="title">
-             <string>发送区</string>
-            </property>
+         </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbSend">
+          <property name="title">
+           <string>SendArea</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QLineEdit" name="txtSend"/>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLineEdit" name="txtSend"/>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBox">
+               <property name="text">
+                <string>Timed Send</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="spinBox">
+               <property name="maximum">
+                <number>100000</number>
+               </property>
+               <property name="value">
+                <number>1000</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>ms</string>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="sendDataBtn">
                <property name="text">
-                <string>发送数据</string>
+                <string>Send</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="sendDataBtn_2">
                <property name="text">
-                <string>发送接收</string>
+                <string>SendRec</string>
                </property>
               </widget>
              </item>
             </layout>
-           </widget>
-          </item>
-         </layout>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>日志</string>
+        <string>Log</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
@@ -140,13 +204,13 @@
        </size>
       </property>
       <property name="title">
-       <string>控制</string>
+       <string>Param</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QPushButton" name="btnUpdataSerialPort">
          <property name="text">
-          <string>刷新串口</string>
+          <string>Refresh SerialPort</string>
          </property>
         </widget>
        </item>
@@ -155,7 +219,7 @@
          <item row="0" column="0">
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>端口：</string>
+            <string>Port：</string>
            </property>
           </widget>
          </item>
@@ -165,7 +229,7 @@
          <item row="1" column="0">
           <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>波特率：</string>
+            <string>BaudRate：</string>
            </property>
           </widget>
          </item>
@@ -175,7 +239,7 @@
          <item row="2" column="0">
           <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>数据位：</string>
+            <string>DataBit：</string>
            </property>
           </widget>
          </item>
@@ -185,7 +249,7 @@
          <item row="3" column="0">
           <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>校验位：</string>
+            <string>Parity：</string>
            </property>
           </widget>
          </item>
@@ -195,7 +259,7 @@
          <item row="4" column="0">
           <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>停止位：</string>
+            <string>StopBit：</string>
            </property>
           </widget>
          </item>
@@ -205,7 +269,7 @@
          <item row="5" column="0">
           <widget class="QLabel" name="label_8">
            <property name="text">
-            <string>数据流：</string>
+            <string>FlowControl：</string>
            </property>
           </widget>
          </item>
@@ -219,14 +283,14 @@
          <item>
           <widget class="QPushButton" name="openSerial">
            <property name="text">
-            <string>打开串口</string>
+            <string>Open</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="closeSerial">
            <property name="text">
-            <string>关闭串口</string>
+            <string>Close</string>
            </property>
           </widget>
          </item>
@@ -250,30 +314,40 @@
     </item>
    </layout>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonTextUnderIcon</enum>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionAbout"/>
-  </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionUpdate">
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1099</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>Other</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>Language</string>
+    </property>
+    <addaction name="actionChinese"/>
+    <addaction name="actionEnglish"/>
+   </widget>
+   <addaction name="menuLanguage"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <action name="actionSwitchLang">
    <property name="icon">
     <iconset>
      <normalon>:/icons/update.ico</normalon>
     </iconset>
    </property>
    <property name="text">
-    <string>说明</string>
-   </property>
-   <property name="toolTip">
-    <string>说明</string>
+    <string>Language</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -283,7 +357,20 @@
     </iconset>
    </property>
    <property name="text">
-    <string>关于</string>
+    <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionChinese">
+   <property name="text">
+    <string>简体中文</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
    </property>
   </action>
  </widget>

@@ -46,6 +46,9 @@ FORMS += \
         mainwindow.ui \
     qtabout.ui
 
+TRANSLATIONS=res/serialPort_zh_CN.ts \
+             res/serialPort_en_CN.ts\
+
 DISTFILES += \
     myico.rc
 

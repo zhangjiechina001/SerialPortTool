@@ -47,6 +47,30 @@ void ConfigVar::setSerialPortParam(SerialPortParam param)
     set->sync();
 }
 
+LanguageParam ConfigVar::getLanguageParam()
+{
+    QSettings *set=Setting;
+    LanguageParam param;
+    if(!set->contains(QString("LanguageParam/CurrentLanguage")))
+    {
+        LanguageParam setParam;
+        setLanguageParam(setParam);
+    }
+    set->beginGroup("LanguageParam");
+    param.CurrentLanguage=set->value("CurrentLanguage").toString();
+    set->endGroup();
+    return param;
+}
+
+void ConfigVar::setLanguageParam(LanguageParam param)
+{
+    QSettings *set=Setting;
+    set->beginGroup("LanguageParam");
+    set->setValue("CurrentLanguage",param.CurrentLanguage);
+    set->endGroup();
+    set->sync();
+}
+
 SendParam ConfigVar::getSendParam()
 {
     QSettings *set=Setting;

@@ -3,5 +3,7 @@
         <file>icon.ico</file>
         <file>icons/update.ico</file>
         <file>icons/about.png</file>
+        <file>res/serialPort_en_CN.qm</file>
+        <file>res/serialPort_zh_CN.qm</file>
     </qresource>
 </RCC>
