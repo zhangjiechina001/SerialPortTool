@@ -47,5 +47,6 @@ private slots:
 #endif // SERIALPORTWRAP_H
 ```
 # 3.设备运行界面
-![图片](https://github.com/user-attachments/assets/1b4db136-ad7d-4f8b-8d60-c4427f6c0dce)
+![图片](https://github.com/user-attachments/assets/53ff118d-43e8-4611-9039-84a262be016e)
+
 
